@@ -20,7 +20,8 @@ NASMFLAGS	:=	-f macho64
 SRCDIR		:=	src/
 OBJDIR		:=	obj/
 INCDIR		:=	include/
-SRC				:=	ft_strlen.s
+SRC				:=	ft_strlen.s		\
+					ft_bzero.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)
 INC				:=	-I./$(INCDIR)
 CACHEF		:=	.cache_exists
