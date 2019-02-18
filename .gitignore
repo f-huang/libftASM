@@ -1,4 +1,5 @@
 .gitignore
+.cache_exists
 a.out
 obj/
 *.o
