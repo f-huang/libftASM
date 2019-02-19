@@ -26,6 +26,7 @@ extern int			ft_isdigit(int c);
 extern int			ft_isascii(int c);
 extern int			ft_isalnum(int c);
 extern int			ft_isprint(int c);
+extern int			ft_toupper(int c);
 
 static void		test_strlen(void)
 {
@@ -160,6 +161,16 @@ static void		test_isprint(void)
 	printf("%i\n", ft_isprint(0x7f));
 }
 
+static void		test_toupper(void)
+{
+	puts("\033[0;33mft_toupper :\033[0;0m");
+	printf("%c\n", ft_toupper('h'));
+	printf("%c\n", ft_toupper('A'));
+	printf("%c\n", ft_toupper('z'));
+	printf("%c\n", ft_toupper(0x60));
+	printf("%c\n", ft_toupper(0x7b));
+}
+
 int		main(void)
 {
 	test_strlen();
@@ -174,5 +185,6 @@ int		main(void)
 	test_isascii();
 	test_isalnum();
 	test_isprint();
+	test_toupper();
 	return (0);
 }

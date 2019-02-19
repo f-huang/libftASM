@@ -31,7 +31,8 @@ SRC				:=	ft_strlen.s		\
 					ft_isalnum.s	\
 					ft_isascii.s	\
 					ft_isdigit.s	\
-					ft_isprint.s
+					ft_isprint.s	\
+					ft_toupper.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)
 INC				:=	-I./$(INCDIR)
 CACHEF		:=	.cache_exists
