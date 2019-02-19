@@ -23,7 +23,8 @@ INCDIR		:=	include/
 SRC				:=	ft_strlen.s		\
 					ft_strcat.s		\
 					ft_strcpy.s		\
-					ft_bzero.s
+					ft_bzero.s		\
+					ft_puts.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)
 INC				:=	-I./$(INCDIR)
 CACHEF		:=	.cache_exists

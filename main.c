@@ -18,7 +18,7 @@ extern size_t		ft_strlen(const char *str);
 extern void			ft_bzero(void *s, size_t n);
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char*		ft_strcat(char *s1, const char *s2);
-// extern size_t		ft_strcat(char *s1, const char *s2);
+extern int			ft_puts(const char *str);
 
 static void		test_strlen(void)
 {
@@ -62,7 +62,7 @@ static void		test_strcpy(void)
 static void		test_strcat(void)
 {
 	char		s1[55] = "Premiere phrase123456.";
-	const char	s2[] = "Deuxieme phrase.";
+	char		s2[55] = "Deuxieme phrase.";
 	char		*ret;
 	size_t		n;
 
@@ -73,11 +73,20 @@ static void		test_strcat(void)
 	ft_strcat(NULL, s2);
 }
 
+static void		test_puts(void)
+{
+	puts("\033[0;33mft_puts :\033[0;0m");
+	ft_puts(NULL);
+	ft_puts("test, test");
+	ft_puts("");
+}
+
 int		main(void)
 {
 	test_strlen();
 	test_bzero();
 	test_strcpy();
 	test_strcat();
+	test_puts();
 	return (0);
 }
