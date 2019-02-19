@@ -19,6 +19,9 @@ extern void			ft_bzero(void *s, size_t n);
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char*		ft_strcat(char *s1, const char *s2);
 extern int			ft_puts(const char *str);
+extern int			ft_isupper(int c);
+extern int			ft_islower(int c);
+extern int			ft_isalpha(int c);
 
 static void		test_strlen(void)
 {
@@ -81,6 +84,39 @@ static void		test_puts(void)
 	ft_puts("");
 }
 
+static void		test_isupper(void)
+{
+	puts("\033[0;33mft_isupper :\033[0;0m");
+	printf("%i\n", ft_isupper('A'));
+	printf("%i\n", ft_isupper('P'));
+	printf("%i\n", ft_isupper('Z'));
+	printf("%i\n", ft_isupper(0x40));
+	printf("%i\n", ft_isupper(0x5b));
+}
+
+static void		test_islower(void)
+{
+	puts("\033[0;33mft_islower :\033[0;0m");
+	printf("%i\n", ft_islower('a'));
+	printf("%i\n", ft_islower('p'));
+	printf("%i\n", ft_islower('z'));
+	printf("%i\n", ft_islower(0x60));
+	printf("%i\n", ft_islower(0x7b));
+}
+
+static void		test_isalpha(void)
+{
+	puts("\033[0;33mft_isalpha :\033[0;0m");
+	printf("%i\n", ft_isalpha('a'));
+	printf("%i\n", ft_isalpha('Z'));
+	printf("%i\n", ft_isalpha('E'));
+	printf("%i\n", ft_isalpha('h'));
+	printf("%i\n", ft_isalpha(0x60));
+	printf("%i\n", ft_isalpha(0x0));
+	printf("%i\n", ft_isalpha('-'));
+}
+
+
 int		main(void)
 {
 	test_strlen();
@@ -88,5 +124,8 @@ int		main(void)
 	test_strcpy();
 	test_strcat();
 	test_puts();
+	test_isupper();
+	test_islower();
+	test_isalpha();
 	return (0);
 }

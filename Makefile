@@ -24,7 +24,10 @@ SRC				:=	ft_strlen.s		\
 					ft_strcat.s		\
 					ft_strcpy.s		\
 					ft_bzero.s		\
-					ft_puts.s
+					ft_puts.s		\
+					ft_islower.s	\
+					ft_isupper.s	\
+					ft_isalpha.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)
 INC				:=	-I./$(INCDIR)
 CACHEF		:=	.cache_exists
