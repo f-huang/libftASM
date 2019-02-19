@@ -18,7 +18,7 @@ _ft_strcpy:
 next:
 	cmp byte [rsi + rcx], 0		; if end of string --> s2[i] == 0 ?
 	je finish					; TRUE -> finish
-	mov byte rdx, [rsi + rcx]	; *ptr = s2[i]
+	mov rdx, [rsi + rcx]	; *ptr = s2[i]
 	inc rcx						; i++
 	inc rdx						; ptr++
 	jmp next					; continue
