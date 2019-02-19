@@ -27,6 +27,7 @@ extern int			ft_isascii(int c);
 extern int			ft_isalnum(int c);
 extern int			ft_isprint(int c);
 extern int			ft_toupper(int c);
+extern int			ft_tolower(int c);
 
 static void		test_strlen(void)
 {
@@ -171,6 +172,16 @@ static void		test_toupper(void)
 	printf("%c\n", ft_toupper(0x7b));
 }
 
+static void		test_tolower(void)
+{
+	puts("\033[0;33mft_tolower :\033[0;0m");
+	printf("%c\n", ft_tolower('H'));
+	printf("%c\n", ft_tolower('a'));
+	printf("%c\n", ft_tolower('Z'));
+	printf("%c\n", ft_tolower(0x60));
+	printf("%c\n", ft_tolower(0x7b));
+}
+
 int		main(void)
 {
 	test_strlen();
@@ -186,5 +197,6 @@ int		main(void)
 	test_isalnum();
 	test_isprint();
 	test_toupper();
+	test_tolower();
 	return (0);
 }
