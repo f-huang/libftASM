@@ -28,6 +28,7 @@ SRC				:=	ft_strlen.s		\
 					ft_islower.s	\
 					ft_isupper.s	\
 					ft_isalpha.s	\
+					ft_isalnum.s	\
 					ft_isascii.s	\
 					ft_isdigit.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)

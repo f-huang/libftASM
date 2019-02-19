@@ -24,6 +24,7 @@ extern int			ft_islower(int c);
 extern int			ft_isalpha(int c);
 extern int			ft_isdigit(int c);
 extern int			ft_isascii(int c);
+extern int			ft_isalnum(int c);
 
 static void		test_strlen(void)
 {
@@ -138,6 +139,16 @@ static void		test_isascii(void)
 	printf("%i\n", ft_isascii(-1));
 }
 
+static void		test_isalnum(void)
+{
+	puts("\033[0;33mft_isalnum :\033[0;0m");
+	printf("%i\n", ft_isalnum('a'));
+	printf("%i\n", ft_isalnum('7'));
+	printf("%i\n", ft_isalnum('0'));
+	printf("%i\n", ft_isalnum(0x60));
+	printf("%i\n", ft_isalnum(0x7b));
+}
+
 int		main(void)
 {
 	test_strlen();
@@ -150,5 +161,6 @@ int		main(void)
 	test_isalpha();
 	test_isdigit();
 	test_isascii();
+	test_isalnum();
 	return (0);
 }
