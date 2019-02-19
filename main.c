@@ -22,6 +22,7 @@ extern int			ft_puts(const char *str);
 extern int			ft_isupper(int c);
 extern int			ft_islower(int c);
 extern int			ft_isalpha(int c);
+extern int			ft_isdigit(int c);
 
 static void		test_strlen(void)
 {
@@ -116,6 +117,15 @@ static void		test_isalpha(void)
 	printf("%i\n", ft_isalpha('-'));
 }
 
+static void		test_isdigit(void)
+{
+	puts("\033[0;33mft_isdigit :\033[0;0m");
+	printf("%i\n", ft_isdigit('4'));
+	printf("%i\n", ft_isdigit('0'));
+	printf("%i\n", ft_isdigit('9'));
+	printf("%i\n", ft_isdigit(10));
+	printf("%i\n", ft_isdigit(0x5));
+}
 
 int		main(void)
 {
@@ -127,5 +137,6 @@ int		main(void)
 	test_isupper();
 	test_islower();
 	test_isalpha();
+	test_isdigit();
 	return (0);
 }
