@@ -6,6 +6,7 @@
 	section .text
 _ft_strlen:
 	push rbp
+	mov rbp, rsp
 	mov rsi, rdi			; rdi to rsi --> same address
 
 next:
@@ -19,5 +20,6 @@ next:
 finish:
 	sub rdi, rsi			; substract -> (rsi - rdi). value stored in rdi
 	mov rax, rdi			; mov rdi value in rax --> rax = return value
+	mov rsp, rbp
 	pop rbp
 	ret

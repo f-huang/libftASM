@@ -6,6 +6,7 @@
 	section .text
 _ft_bzero:
 	push	rbp
+	mov		rbp, rsp
 	cmp		rdi, 0
 	je		finish
 
@@ -17,5 +18,6 @@ next:
 	jmp		next					; continue;
 
 finish:
+	mov		rsp, rbp
 	pop		rbp
 	ret

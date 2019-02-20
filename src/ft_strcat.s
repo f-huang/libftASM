@@ -5,6 +5,8 @@
 	global _ft_strcat
 	section .text
 _ft_strcat:
+	push	rbp
+	mov		rbp, rsp
 	cmp		rdi, 0				; if s1 == NULL
 	je 		quit				; TRUE -> quit
 	cmp		rsi, 0				; if s2 == NULL
@@ -34,8 +36,12 @@ finish:
 	mov		rax, rdi			; rdi points to start of ptr1
 	pop		rsi
 	pop		rdi
+	mov		rsp, rbp
+	pop		rbp
 	ret
 
 quit:
 	mov rax, 0					; return NULL
+	mov		rsp, rbp
+	pop		rbp
 	ret

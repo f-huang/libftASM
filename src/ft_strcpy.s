@@ -6,6 +6,8 @@
 	section .text
 
 _ft_strcpy:
+	push	rbp
+	mov		rbp, rsp
 	push rdi					; Keep trace of first arg
 	push rsi					; Keep trace of second arg
 	cmp rdi, 0					; if s1 == NULL
@@ -28,4 +30,6 @@ finish:
 	pop rdi
 	pop rsi
 	mov rax, rdi				; rdi points to start of s1.
+	mov		rsp, rbp
+	pop		rbp
 	ret

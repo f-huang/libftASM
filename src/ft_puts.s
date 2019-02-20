@@ -24,6 +24,8 @@ newline db 0xa
 
 	section .text
 _ft_puts:
+	push	rbp
+	mov		rbp, rsp
 	cmp			rdi, 0
 	je			null_pointer
 	jne			ordinary_str
@@ -32,6 +34,8 @@ null_pointer:
 	push		rdi
 	write_str	null_string, null_string_len
 	pop			rdi
+	mov		rsp, rbp
+	pop		rbp
 	ret
 
 ordinary_str:
@@ -41,4 +45,6 @@ ordinary_str:
 	write_str	r8, rax
 	write_str	newline, 0x1
 	pop			rdi
+	mov		rsp, rbp
+	pop		rbp
 	ret

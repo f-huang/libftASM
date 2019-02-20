@@ -7,6 +7,8 @@
 
 	section .text
 _ft_isupper:
+	push	rbp
+	mov		rbp, rsp
 	cmp		rdi, 0x41
 	jl		false
 	cmp		rdi, 0x5a
@@ -15,8 +17,12 @@ _ft_isupper:
 
 false:
 	mov		rax, 0x0
+	mov		rsp, rbp
+	pop		rbp
 	ret
 
 true:
 	mov		rax, 0x1
+	mov		rsp, rbp
+	pop		rbp
 	ret

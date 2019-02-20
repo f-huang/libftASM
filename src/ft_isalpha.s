@@ -9,6 +9,8 @@
 
 	section .text
 _ft_isalpha:
+	push	rbp
+	mov		rbp, rsp
 	call _ft_islower
 	cmp rax, 0x1
 	je	true
@@ -19,8 +21,12 @@ _ft_isalpha:
 
 false:
 	mov rax, 0x0
+	mov		rsp, rbp
+	pop		rbp
 	ret
 
 true:
 	mov rax, 0x1
+	mov		rsp, rbp
+	pop		rbp
 	ret

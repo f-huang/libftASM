@@ -9,18 +9,24 @@
 
 	section .text
 _ft_isalnum:
-	call _ft_isalpha
-	cmp rax, 0x1
-	je	true
-	call _ft_isdigit
-	cmp rax, 0x1
-	je true
-	jne false
+	push	rbp
+	mov		rbp, rsp
+	call	_ft_isalpha
+	cmp		rax, 0x1
+	je		true
+	call	_ft_isdigit
+	cmp		rax, 0x1
+	je		true
+	jne		false
 
 false:
-	mov rax, 0x0
+	mov		rax, 0x0
+	mov		rsp, rbp
+	pop		rbp
 	ret
 
 true:
-	mov rax, 0x1
+	mov		rax, 0x1
+	mov		rsp, rbp
+	pop		rbp
 	ret
