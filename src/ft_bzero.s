@@ -7,17 +7,25 @@
 _ft_bzero:
 	push	rbp
 	mov		rbp, rsp
-	cmp		rdi, 0
-	je		finish
 
-next:
-	cmp		rsi, -1					;	compare 2nd arg (n) to -1
-	je		finish					;	if n == -1 ; finish
-	mov		byte [rdi + rsi], 0		;	rdi[rsi] = 0 --> s[n] = 0
-	dec		rsi						;	n--
-	jmp		next					; continue;
+	cmp		rdi, 0x0
+	je		null_pointer
 
-finish:
+	mov		r8, rdi
+
+	mov		rax, 0x0
+	mov		rcx, rsi
+	rep		stosb
+
+	mov		rax, r8
+
+	mov		rsp, rbp
+	pop		rbp
+
+	ret
+
+null_pointer:
+	mov		rax, 0x0
 	mov		rsp, rbp
 	pop		rbp
 	ret
