@@ -42,10 +42,13 @@ extern void			*ft_memset(void *b, int c, size_t len);
 static void		test_strlen(void)
 {
 	const char	str[] = "Hello, je suis une <String>.";
+	const char	super_long_string[] = "Montpellier, first mentioned in a document of 985, was founded under a local feudal dynasty, the Guilhem, who combined two hamlets and built a castle and walls around the united settlement. The two surviving towers of the city walls, the Tour des Pins and the Tour de la Babotte, were built later, around the year 1200.";
 	puts("\033[0;33mft_strlen :\033[0;0m");
 	printf("%-30s %zu\n", str, ft_strlen(str));
 	printf("%-30s %zu\n", "-- empty string --", ft_strlen(""));
 	printf("%-30s %zu\n", "-- null string --", ft_strlen(NULL));
+	printf("%-30s %zu\n", super_long_string, ft_strlen(super_long_string));
+
 }
 
 static void		test_bzero(void)
@@ -247,7 +250,7 @@ static void		test_strdup(void)
 
 int		main(void)
 {
-	// test_strlen();
+	test_strlen();
 	// test_bzero();
 	// test_strcpy();
 	// test_strcat();
