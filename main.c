@@ -12,13 +12,18 @@
 
 #include <stddef.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 extern size_t		ft_strlen(const char *str);
 extern void			ft_bzero(void *s, size_t n);
+extern void			*ft_memset(void *b, int c, size_t len);
+
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char*		ft_strcat(char *s1, const char *s2);
 extern int			ft_puts(const char *str);
+
 extern int			ft_isupper(int c);
 extern int			ft_islower(int c);
 extern int			ft_isalpha(int c);
@@ -28,6 +33,8 @@ extern int			ft_isalnum(int c);
 extern int			ft_isprint(int c);
 extern int			ft_toupper(int c);
 extern int			ft_tolower(int c);
+
+extern void			*ft_memset(void *b, int c, size_t len);
 
 static void		test_strlen(void)
 {
@@ -182,6 +189,41 @@ static void		test_tolower(void)
 	printf("%c\n", ft_tolower(0x7b));
 }
 
+static void		test_memset(void)
+{
+	void			*ret;
+	void			*p;
+
+	p = malloc(30);
+	puts("\033[0;33mft_memset :\033[0;0m");
+	printf("%p\n", (char*)p);
+	ret = ft_memset(NULL, 'a', 30);
+	// printf("%p\n", (char*)ret);
+	ret = ft_memset(p, 'a', 30);
+	printf("%p\n", (char*)ret);
+	printf("%s\n", (char*)ret);
+	// printf("%s\n", (char*)ret);
+	ret = ft_memset(ret, '*', 9);
+	// write(1, ret, 30);
+	printf("%s\n", (char*)ret);
+	ret = ft_memset(ret, '6', 2);
+	printf("%s\n", (char*)ret);
+
+
+	// ret = memset(p, 'a', 15);
+	// printf("%s\n", (char*)ret);
+	// ret = memset(ret, '*', 9);
+	// printf("%s\n", (char*)ret);
+	// ret = memset(ret, '6', 2);
+	// printf("%s\n", (char*)ret);
+		// bzero(ret + 2, 2);
+		// for (int i = 0; i < 15; i++)
+		// 	printf("%c\n", ((char*)ret)[i]);
+	free(p);
+
+
+}
+
 int		main(void)
 {
 	test_strlen();
@@ -198,5 +240,6 @@ int		main(void)
 	test_isprint();
 	test_toupper();
 	test_tolower();
+	test_memset();
 	return (0);
 }
