@@ -22,7 +22,9 @@ extern void			*ft_memset(void *b, int c, size_t len);
 extern void			*ft_memcpy(void *dst, void *src, size_t len);
 
 extern char			*ft_strcpy(char *s1, const char *s2);
-extern char*		ft_strcat(char *s1, const char *s2);
+extern char			*ft_strdup(const char *s);
+// extern size_t			ft_strdup(const char *s);
+extern char			*ft_strcat(char *s1, const char *s2);
 extern int			ft_puts(const char *str);
 
 extern int			ft_isupper(int c);
@@ -55,9 +57,9 @@ static void		test_bzero(void)
 
 	puts(to_clean);
 	ft_bzero(&to_clean, 22);
-	write(1, (char*)to_clean, 22);
-	ft_bzero(NULL, 20);
-	ft_bzero(p, 0);
+	// write(1, (char*)to_clean, 22);
+	// ft_bzero(NULL, 20);
+	// ft_bzero(p, 0);
 }
 
 static void		test_strcpy(void)
@@ -225,23 +227,42 @@ static void		test_memcpy(void)
 	free(p);
 }
 
+static void		test_strdup(void)
+{
+	// size_t		ret;
+	char		*ret;
+
+	puts("\033[0;33mft_strdup :\033[0;0m");
+	ret = ft_strdup(NULL);
+	printf("%p\n", ret);
+	ret = ft_strdup("Hello. Ceci est un test");
+	if (!ret)
+		return ;
+		// printf("%zu\n", ret);
+	printf("%s\n", ret);
+	printf("%p\n", ret);
+	free(ret);
+	// free(ret);
+}
+
 int		main(void)
 {
-	test_strlen();
-	test_bzero();
-	test_strcpy();
-	test_strcat();
-	test_puts();
-	test_isupper();
-	test_islower();
-	test_isalpha();
-	test_isdigit();
-	test_isascii();
-	test_isalnum();
-	test_isprint();
-	test_toupper();
-	test_tolower();
-	test_memset();
-	test_memcpy();
+	// test_strlen();
+	// test_bzero();
+	// test_strcpy();
+	// test_strcat();
+	// test_puts();
+	// test_isupper();
+	// test_islower();
+	// test_isalpha();
+	// test_isdigit();
+	// test_isascii();
+	// test_isalnum();
+	// test_isprint();
+	// test_toupper();
+	// test_tolower();
+	// test_memset();
+	// test_memcpy();
+	test_strdup();
 	return (0);
 }
