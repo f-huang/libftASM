@@ -1,0 +1,67 @@
+External links :
+	Intel vs AT&T Syntax
+		https://imada.sdu.dk/Employees/kslarsen-bak/Courses/dm18-2007-spring/Litteratur/IntelnATT.htm
+	Tutorials Point about Assembly Language
+		https://www.tutorialspoint.com/assembly_programming/index.htm
+	Syscalls in Assembly
+		https://opensource.apple.com/source/xnu/xnu-792.1.5/bsd/kern/syscalls.master
+	Application Binary Interface (ABI) for x86-64
+		https://www.uclibc.org/docs/psABI-x86_64.pdf
+	Calling Conventions
+		https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6
+	OS X Assembler Reference
+		http://apfel.mathematik.uni-ulm.de/~lehn/sghpc_ws14/OSXAssembler.pdf
+	C to Assembly
+		https://www.nasm.us/xdoc/2.09.04/html/nasmdoc9.html
+
+
+The number of the syscall has to be passed in register %rax.
+
+		rdi		used to pass 1st argument to functions
+		rsi		used to pass 2nd argument to functions
+		rdx		used to pass 3rd argument to functions
+		rcx		used to pass 4th argument to functions
+		r8		used to pass 5th argument to functions
+		r9		used to pass 6th argument to functions
+
+		A system-call is done via the syscall instruction.
+		The kernel destroys registers rcx and r11.
+
+--> include <syscall_sw.h>
+		#define SYSCALL_CLASS_SHIFT	24
+		#define SYSCALL_CLASS_MASK	(0xFF << SYSCALL_CLASS_SHIFT)
+		#define SYSCALL_NUMBER_MASK	(~SYSCALL_CLASS_MASK)
+
+		#define SYSCALL_CLASS_NONE	0	/* Invalid */
+		#define SYSCALL_CLASS_MACH	1	/* Mach */
+		#define SYSCALL_CLASS_UNIX	2	/* Unix/BSD */
+		#define SYSCALL_CLASS_MDEP	3	/* Machine-dependent */
+		#define SYSCALL_CLASS_DIAG	4	/* Diagnostics */
+
+->	UNIX_SYSCALL(syscall_number) (SYSCALL_CLASS_UNIX << SYSCALL_CLASS_SHIFT) | syscall_number
+
+
+
+In macOS land, C functions (or any function that is exported from one module to another, really)
+must be prefixed with underscores.
+The call stack must be aligned on a 16-byte boundary (more on this later).
+And when accessing named variables, a `rel` prefix is required.
+
+
+The stack pointer rsp must be aligned to a 16-byte boundary before making a call.
+Fine, but the process of making a call pushes the return address (8 bytes) on the stack,
+so when a function gets control, rsp is not aligned.
+You have to make that extra space yourself, by pushing something or subtracting 8 from rsp.
+
+
+push x			Decrement rsp by the size of the operand, then store x in [rsp]
+pop x			Move [rsp] into x, then increment rsp by the size of the operand
+jnz label      	If the processor’s Z (zero) flag, is set, jump to the given label
+call label		Push the address of the next instruction, then jump to the label
+ret				Pop into the instruction pointer
+
+JE / JZ 		Conditional jump when ZF ('zero' flag) = 1
+JNE / JNZ 		Conditional jump when ZF ('zero' flag) = 0
+
+JZ / JNZ --> More appropriate when explicitly testing for smthing equal to 0
+JE / JNE --> More appropriate when using `CMP`
