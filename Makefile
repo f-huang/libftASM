@@ -25,6 +25,7 @@ SRC				:=	ft_strlen.s		\
 					ft_strcpy.s		\
 					ft_bzero.s		\
 					ft_memset.s		\
+					ft_memcpy.s		\
 					ft_puts.s		\
 					ft_islower.s	\
 					ft_isupper.s	\

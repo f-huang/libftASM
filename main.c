@@ -19,6 +19,7 @@
 extern size_t		ft_strlen(const char *str);
 extern void			ft_bzero(void *s, size_t n);
 extern void			*ft_memset(void *b, int c, size_t len);
+extern void			*ft_memcpy(void *dst, void *src, size_t len);
 
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char*		ft_strcat(char *s1, const char *s2);
@@ -198,30 +199,30 @@ static void		test_memset(void)
 	puts("\033[0;33mft_memset :\033[0;0m");
 	printf("%p\n", (char*)p);
 	ret = ft_memset(NULL, 'a', 30);
-	// printf("%p\n", (char*)ret);
 	ret = ft_memset(p, 'a', 30);
 	printf("%p\n", (char*)ret);
 	printf("%s\n", (char*)ret);
-	// printf("%s\n", (char*)ret);
 	ret = ft_memset(ret, '*', 9);
-	// write(1, ret, 30);
 	printf("%s\n", (char*)ret);
 	ret = ft_memset(ret, '6', 2);
 	printf("%s\n", (char*)ret);
-
-
-	// ret = memset(p, 'a', 15);
-	// printf("%s\n", (char*)ret);
-	// ret = memset(ret, '*', 9);
-	// printf("%s\n", (char*)ret);
-	// ret = memset(ret, '6', 2);
-	// printf("%s\n", (char*)ret);
-		// bzero(ret + 2, 2);
-		// for (int i = 0; i < 15; i++)
-		// 	printf("%c\n", ((char*)ret)[i]);
 	free(p);
+}
 
+static void		test_memcpy(void)
+{
+	void		*ret;
+	void		*p;
+	char		src[50] = "123456789abcdefghijklmn";
 
+	// ret = NULL;
+	p = malloc(42);
+	puts("\033[0;33mft_memcpy :\033[0;0m");
+	ret = ft_memcpy(p, src, 12);
+	printf("%s\n", (char*)ret);
+	ret = ft_memcpy(p, src, 20);
+	printf("%s\n", (char*)ret);
+	free(p);
 }
 
 int		main(void)
@@ -241,5 +242,6 @@ int		main(void)
 	test_toupper();
 	test_tolower();
 	test_memset();
+	test_memcpy();
 	return (0);
 }
