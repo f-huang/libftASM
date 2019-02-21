@@ -28,6 +28,8 @@ SRC				:=	ft_strlen.s		\
 					ft_memset.s		\
 					ft_memcpy.s		\
 					ft_puts.s		\
+					ft_puts_fd.s	\
+					ft_putstr_fd.s	\
 					ft_islower.s	\
 					ft_isupper.s	\
 					ft_isalpha.s	\
@@ -36,7 +38,8 @@ SRC				:=	ft_strlen.s		\
 					ft_isdigit.s	\
 					ft_isprint.s	\
 					ft_tolower.s	\
-					ft_toupper.s
+					ft_toupper.s	\
+					ft_cat.s
 OBJ				:=	$(SRC:%.s=$(OBJDIR)%.o)
 INC				:=	-I./$(INCDIR)
 CACHEF		:=	.cache_exists

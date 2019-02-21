@@ -23,10 +23,9 @@ extern void			*ft_memcpy(void *dst, void *src, size_t len);
 
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char			*ft_strdup(const char *s);
-// extern size_t			ft_strdup(const char *s);
 extern char			*ft_strcat(char *s1, const char *s2);
 extern int			ft_puts(const char *str);
-
+extern int			ft_puts_fd(int fd, const char *str);
 extern int			ft_isupper(int c);
 extern int			ft_islower(int c);
 extern int			ft_isalpha(int c);
@@ -37,7 +36,8 @@ extern int			ft_isprint(int c);
 extern int			ft_toupper(int c);
 extern int			ft_tolower(int c);
 
-extern void			*ft_memset(void *b, int c, size_t len);
+extern void			ft_cat(int fd);
+
 
 static void		test_strlen(void)
 {
@@ -101,6 +101,17 @@ static void		test_puts(void)
 	ft_puts(NULL);
 	ft_puts("test, test");
 	ft_puts("");
+}
+
+static void		test_puts_fd(void)
+{
+	int	ret;
+	char	s[] = "test, test\n";
+
+	puts("\033[0;33mft_puts_fd :\033[0;0m");
+	ret = ft_puts_fd(2, NULL);
+	ret = ft_puts_fd(1, "essai.");
+	ft_puts_fd(1, "");
 }
 
 static void		test_isupper(void)
@@ -248,13 +259,22 @@ static void		test_strdup(void)
 	// free(ret);
 }
 
+static void		test_cat(void)
+{
+	// int		ret;
+
+	ft_cat(0);
+}
+
+
 int		main(void)
 {
-	test_strlen();
+	// test_strlen();
 	// test_bzero();
 	// test_strcpy();
 	// test_strcat();
 	// test_puts();
+	// test_puts_fd();
 	// test_isupper();
 	// test_islower();
 	// test_isalpha();
@@ -266,6 +286,7 @@ int		main(void)
 	// test_tolower();
 	// test_memset();
 	// test_memcpy();
-	test_strdup();
+	// test_strdup();
+	test_cat();
 	return (0);
 }
