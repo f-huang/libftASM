@@ -23,7 +23,7 @@ call_strlen:
 
 	mov		rcx, rax
 	inc		rcx
-;
+
 call_malloc:
 	push	rcx
 	push	rdi
@@ -34,7 +34,7 @@ call_malloc:
 
 	mov		r8, rax
 
-call_bzero
+call_bzero:
 	push	rcx
 	push	rdi
 
