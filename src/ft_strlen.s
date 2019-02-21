@@ -13,6 +13,7 @@ _ft_strlen:
 
 	mov		rsi, rdi
 	mov		rax, 0x0
+	mov		rcx, 0xFFFFFFFF
 	repne	scasb
 
 	sub		rdi, rsi			; substract -> (rsi - rdi). value stored in rdi
