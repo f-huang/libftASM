@@ -27,7 +27,7 @@ bzero_buffer:
 	push	rsi
 
 	mov		rsi, BUFFER_SIZE
-	mov		rdi, buffer
+	lea		rdi, [rel buffer]
 	call	_ft_bzero
 
 	pop		rsi
@@ -40,7 +40,7 @@ read_fd:
 
 	mov		rax, SYSCALL_UNIX(SYS_READ)
 	mov		rdx, BUFFER_SIZE
-	mov		rsi, buffer
+	lea		rsi, [rel buffer]
 	mov		rdi, rdi
 	syscall
 
@@ -56,7 +56,7 @@ is_end_of_reading:
 output_line:
 	push	rsi
 	push	rdi
-	mov		rsi, buffer
+	lea		rsi, [rel buffer]
 	call	_ft_putstr_fd
 	pop		rdi
 	pop		rsi

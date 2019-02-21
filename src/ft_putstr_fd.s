@@ -2,8 +2,8 @@
 ;	int	ft_putstr_fd(int fd, const char *str);			;
 ;–––––––––––––––––––––––––––––––––––––––––––––––––––––––;
 
-%define SYS_WRITE 4
-%define SYSCALL_UNIX(sys_num) (2 << 24) | sys_num
+%define SYS_WRITE				4
+%define SYSCALL_UNIX(sys_num)	(2 << 24) | sys_num
 
 %macro write_str 3
 	mov rdi, %1
@@ -30,7 +30,11 @@ _ft_putstr_fd:
 	jne			ordinary_str
 
 null_pointer:
-	write_str	rdi, null_string, null_string_len
+	mov 	rax, SYSCALL_UNIX(SYS_WRITE)
+	lea		rsi, [rel null_string]
+	lea		rdx, [null_string_len]
+	syscall
+
 	mov			rsp, rbp
 	pop			rbp
 	ret

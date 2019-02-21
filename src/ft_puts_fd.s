@@ -34,7 +34,7 @@ _ft_puts_fd:
 	je		finish
 
 print_newline:
-	mov		rsi, newline
+	lea		rsi, [rel newline]
 	call	_ft_putstr_fd
 	jmp		finish
 
