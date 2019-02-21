@@ -4,7 +4,7 @@
 
 %define SYS_READ				3
 %define SYSCALL_UNIX(sys_num)	(2 << 24) | sys_num
-
+%define STDOUT					1
 %define BUFFER_SIZE				126
 
 	global	_ft_cat
@@ -56,6 +56,7 @@ is_end_of_reading:
 output_line:
 	push	rsi
 	push	rdi
+	mov		rdi, STDOUT
 	lea		rsi, [rel buffer]
 	call	_ft_putstr_fd
 	pop		rdi

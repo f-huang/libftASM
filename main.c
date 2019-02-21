@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <fcntl.h>
 
 extern size_t		ft_strlen(const char *str);
 extern void			ft_bzero(void *s, size_t n);
@@ -54,7 +55,6 @@ static void		test_strlen(void)
 static void		test_bzero(void)
 {
 	char	to_clean[] = "Il faut bzero() ça.";
-	void	*p;
 
 	puts("\033[0;33mft_bzero :\033[0;0m");
 
@@ -86,7 +86,6 @@ static void		test_strcat(void)
 	char		s1[55] = "Premiere phrase123456.";
 	char		s2[55] = "Deuxieme phrase.";
 	char		*ret;
-	size_t		n;
 
 	puts("\033[0;33mft_strcat :\033[0;0m");
 	ret = ft_strcat(s1, s2);
@@ -105,12 +104,13 @@ static void		test_puts(void)
 
 static void		test_puts_fd(void)
 {
-	int	ret;
+	int		ret;
 	char	s[] = "test, test\n";
 
 	puts("\033[0;33mft_puts_fd :\033[0;0m");
 	ret = ft_puts_fd(2, NULL);
 	ret = ft_puts_fd(1, "essai.");
+	ret = ft_puts_fd(1, s);
 	ft_puts_fd(1, "");
 }
 
@@ -261,32 +261,42 @@ static void		test_strdup(void)
 
 static void		test_cat(void)
 {
-	// int		ret;
+	const char filename[] = "test";
+	int		fd;
 
-	ft_cat(0);
+	puts("\033[0;33mft_cat :\033[0;0m");
+
+	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 0644);
+	if (fd > -1)
+	{
+		ft_cat(fd);
+		close(fd);
+	}
+	else
+		printf("\nCould not open %s -> fd = %i\n", filename, fd);
 }
 
 
 int		main(void)
 {
-	// test_strlen();
-	// test_bzero();
-	// test_strcpy();
-	// test_strcat();
-	// test_puts();
-	// test_puts_fd();
-	// test_isupper();
-	// test_islower();
-	// test_isalpha();
-	// test_isdigit();
-	// test_isascii();
-	// test_isalnum();
-	// test_isprint();
-	// test_toupper();
-	// test_tolower();
-	// test_memset();
-	// test_memcpy();
-	// test_strdup();
+	test_strlen();
+	test_bzero();
+	test_strcpy();
+	test_strcat();
+	test_puts();
+	test_puts_fd();
+	test_isupper();
+	test_islower();
+	test_isalpha();
+	test_isdigit();
+	test_isascii();
+	test_isalnum();
+	test_isprint();
+	test_toupper();
+	test_tolower();
+	test_memset();
+	test_memcpy();
+	test_strdup();
 	test_cat();
 	return (0);
 }
