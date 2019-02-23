@@ -12,13 +12,16 @@
 	extern	_ft_bzero
 
 	section	.bss
-buffer: resb BUFFER_SIZE
+buffer: resb BUFFER_SIZE + 1
 
 	section	.text
 
 _ft_cat:
 	push	rbp
 	mov		rbp, rsp
+	sub		rsp, 32
+
+	mov		r9, rdi
 
 keep_reading:
 
@@ -26,7 +29,7 @@ bzero_buffer:
 	push	rdi
 	push	rsi
 
-	mov		rsi, BUFFER_SIZE
+	mov		rsi, BUFFER_SIZE + 1
 	lea		rdi, [rel buffer]
 	call	_ft_bzero
 
@@ -39,9 +42,9 @@ read_fd:
 	push	rdi
 
 	mov		rax, SYSCALL_UNIX(SYS_READ)
+	mov		rdi, r9
 	mov		rdx, BUFFER_SIZE
 	lea		rsi, [rel buffer]
-	mov		rdi, rdi
 	syscall
 
 	pop		rdi
@@ -64,6 +67,7 @@ output_line:
 	jmp		keep_reading
 
 finish:
+	add		rsp, 32
 	mov		rsp, rbp
 	pop		rbp
 	ret
