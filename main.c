@@ -43,12 +43,10 @@ extern void			ft_cat(int fd);
 static void		test_strlen(void)
 {
 	const char	str[] = "Hello, je suis une <String>.";
-	const char	super_long_string[] = "Montpellier, first mentioned in a document of 985, was founded under a local feudal dynasty, the Guilhem, who combined two hamlets and built a castle and walls around the united settlement. The two surviving towers of the city walls, the Tour des Pins and the Tour de la Babotte, were built later, around the year 1200.";
 	puts("\033[0;33mft_strlen :\033[0;0m");
 	printf("%-30s %zu\n", str, ft_strlen(str));
 	printf("%-30s %zu\n", "-- empty string --", ft_strlen(""));
 	printf("%-30s %zu\n", "-- null string --", ft_strlen(NULL));
-	printf("%-30s %zu\n", super_long_string, ft_strlen(super_long_string));
 
 }
 
@@ -60,9 +58,7 @@ static void		test_bzero(void)
 
 	puts(to_clean);
 	ft_bzero(&to_clean, 22);
-	// write(1, (char*)to_clean, 22);
-	// ft_bzero(NULL, 20);
-	// ft_bzero(p, 0);
+	write(1, (char*)to_clean, 22);
 }
 
 static void		test_strcpy(void)
@@ -83,12 +79,15 @@ static void		test_strcpy(void)
 
 static void		test_strcat(void)
 {
-	char		s1[55] = "Premiere phrase123456.";
-	char		s2[55] = "Deuxieme phrase.";
+	char		s1[75] = "Premiere phrase.";
+	const char		s2[] = "Deuxieme phrase.";
+	const char		s3[] = "Troisieme phrase.";
 	char		*ret;
 
 	puts("\033[0;33mft_strcat :\033[0;0m");
 	ret = ft_strcat(s1, s2);
+	printf("%s\n", ret);
+	ret = ft_strcat(s1, s3);
 	printf("%s\n", ret);
 	ft_strcat(s1, NULL);
 	ft_strcat(NULL, s2);
@@ -229,9 +228,9 @@ static void		test_memcpy(void)
 {
 	void		*ret;
 	void		*p;
-	char		src[50] = "123456789abcdefghijklmn";
+	const char		src[50] = "123456789abcdefghijklmn";
 
-	// ret = NULL;
+	ret = NULL;
 	p = malloc(42);
 	puts("\033[0;33mft_memcpy :\033[0;0m");
 	ret = ft_memcpy(p, src, 12);
@@ -243,7 +242,6 @@ static void		test_memcpy(void)
 
 static void		test_strdup(void)
 {
-	// size_t		ret;
 	char		*ret;
 
 	puts("\033[0;33mft_strdup :\033[0;0m");
@@ -252,28 +250,26 @@ static void		test_strdup(void)
 	ret = ft_strdup("Hello. Ceci est un test");
 	if (!ret)
 		return ;
-		// printf("%zu\n", ret);
 	printf("%s\n", ret);
 	printf("%p\n", ret);
 	free(ret);
-	// free(ret);
 }
 
 static void		test_cat(void)
 {
-	const char filename[] = "test";
+	const char filename[] = "./main.c";
 	int		fd;
 
 	puts("\033[0;33mft_cat :\033[0;0m");
-
-	fd = open(filename, O_CREAT | O_RDWR | O_APPEND, 0644);
-	if (fd > -1)
 	{
+		fd = open(filename, O_RDONLY);
 		ft_cat(fd);
 		close(fd);
+		printf("\nfile: %s | fd = %i\n", filename, fd);
+		fd = -1;
+		ft_cat(fd);
+		printf("\nfd = %i\n",  fd);
 	}
-	else
-		printf("\nCould not open %s -> fd = %i\n", filename, fd);
 }
 
 
