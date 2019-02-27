@@ -233,9 +233,9 @@ static void		test_memcpy(void)
 	ret = NULL;
 	p = malloc(42);
 	puts("\033[0;33mft_memcpy :\033[0;0m");
-	ret = ft_memcpy(p, src, 12);
+	ret = ft_memcpy(p, (void*)src, 12);
 	printf("%s\n", (char*)ret);
-	ret = ft_memcpy(p, src, 20);
+	ret = ft_memcpy(p, (void*)src, 20);
 	printf("%s\n", (char*)ret);
 	free(p);
 }
