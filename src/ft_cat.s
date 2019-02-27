@@ -5,7 +5,7 @@
 %define SYS_READ				3
 %define SYSCALL_UNIX(sys_num)	(2 << 24) | sys_num
 %define STDOUT					1
-%define BUFFER_SIZE				125
+%define BUFFER_SIZE				1024
 
 	global	_ft_cat
 	extern	_ft_putstr_fd
