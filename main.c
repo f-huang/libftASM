@@ -64,18 +64,19 @@ static void		test_bzero(void)
 
 static void		test_strcpy(void)
 {
-	char		dst[50];
 	const char	src1[] = "Rempli la string.!";
 	const char	src2[] = "Deuxieme test.";
 	char		*ret;
 
+	ret = malloc(42);
 	puts("\033[0;33mft_strcpy :\033[0;0m");
-	ret = ft_strcpy(dst, src1);
+	ret = ft_strcpy(ret, src1);
 	printf("%s\n", ret);
-	ft_strcpy(dst, NULL);
+	ft_strcpy(ret, NULL);
 	ft_strcpy(NULL, src1);
 	ret = ft_strcpy(ret, src2);
 	printf("%s\n", ret);
+	free(ret);
 }
 
 static void		test_strcat(void)
