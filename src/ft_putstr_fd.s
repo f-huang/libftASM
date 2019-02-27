@@ -25,9 +25,11 @@ null_string_len	equ $ - null_string
 _ft_putstr_fd:
 	push		rbp
 	mov			rbp, rsp
+	sub			rsp, 32
+
 	cmp			rsi, 0
 	je			null_pointer
-	jne			ordinary_str
+	jne			call_strlen
 
 null_pointer:
 	mov 	rax, SYSCALL_UNIX(SYS_WRITE)
@@ -35,24 +37,28 @@ null_pointer:
 	lea		rdx, [null_string_len]
 	syscall
 
-	mov			rsp, rbp
-	pop			rbp
-	ret
-
-ordinary_str:
-	mov			r8, rdi
-	mov			rdx, rsi
+	jmp		finish
 
 call_strlen:
 	push		rdi
-	mov			rdi, rdx
+	mov			rdi, rsi
 	call		_ft_strlen
 	pop			rdi
 
 call_write:
-	mov			rcx, rax
-	write_str	r8, rdx, rcx
+	push		rdx
+	push		rsi
+	push		rdi
 
+	mov			rcx, rax
+	write_str	rdi, rsi, rcx
+
+	pop			rdi
+	pop			rsi
+	pop			rdx
+
+finish:
+	add			rsp, 32
 	mov			rsp, rbp
 	pop			rbp
 	ret
