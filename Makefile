@@ -15,7 +15,7 @@ NAME			:=	libfts.a
 # ====================
 
 # ===== Standard =====
-NASM			:=	~/.brew/bin/nasm
+NASM		:=	nasm
 NASMFLAGS	:=	-f macho64
 SRCDIR		:=	src/
 OBJDIR		:=	obj/
