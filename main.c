@@ -24,6 +24,7 @@ extern void			*ft_memcpy(void *dst, void *src, size_t len);
 
 extern char			*ft_strcpy(char *s1, const char *s2);
 extern char			*ft_strdup(const char *s);
+extern char			*ft_strnew(size_t size);
 extern char			*ft_strcat(char *s1, const char *s2);
 extern int			ft_puts(const char *str);
 extern int			ft_puts_fd(int fd, const char *str);
@@ -255,6 +256,17 @@ static void		test_strdup(void)
 	free(ret);
 }
 
+static void		test_strnew(void)
+{
+	char		*ret;
+
+	puts("\033[0;33mft_strnew :\033[0;0m");
+	ret = ft_strnew(5);
+	ret[2] = '2';
+	write(1, ret, 5);
+	free(ret);
+}
+
 static void		test_cat(void)
 {
 	const char filename[] = "./main.c";
@@ -293,6 +305,7 @@ int		main(void)
 	test_memset();
 	test_memcpy();
 	test_strdup();
-	test_cat();
+	test_strnew();
+	// test_cat();
 	return (0);
 }

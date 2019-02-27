@@ -24,6 +24,7 @@ SRC				:=	ft_strlen.s		\
 					ft_strcat.s		\
 					ft_strcpy.s		\
 					ft_strdup.s		\
+					ft_strnew.s		\
 					ft_bzero.s		\
 					ft_memset.s		\
 					ft_memcpy.s		\
