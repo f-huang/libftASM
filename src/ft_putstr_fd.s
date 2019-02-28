@@ -18,8 +18,8 @@
 
 	section .data
 
-null_string 	db "(null)", 0xa, 0x0
-null_string_len	equ $ - null_string
+null_string 	db "(null)", 0x0
+.len			equ $ - null_string
 
 	section .text
 _ft_putstr_fd:
@@ -34,7 +34,7 @@ _ft_putstr_fd:
 null_pointer:
 	mov 	rax, SYSCALL_UNIX(SYS_WRITE)
 	lea		rsi, [rel null_string]
-	lea		rdx, [null_string_len]
+	lea		rdx, [null_string.len]
 	syscall
 
 	jmp		finish

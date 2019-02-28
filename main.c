@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:20:24 by fhuang            #+#    #+#             */
-/*   Updated: 2019/02/28 14:36:09 by fhuang           ###   ########.fr       */
+/*   Updated: 2019/02/28 14:43:15 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,18 @@ static void		test_strcat(void)
 
 static void		test_puts(void)
 {
+	int		ret = 0;
+	int		ret2 = 0;
+
 	puts("\033[0;33mft_puts :\033[0;0m");
-	ft_puts(NULL);
-	ft_puts("test, test");
-	ft_puts("");
+	if ((ret = ft_puts(NULL)) != (ret2 = puts(NULL)))
+		printf("ERROR ft_puts(%s): %d %d\n", "(null)", ret, ret2);
+	if ((ret = ft_puts("test_test")) != (ret2 = puts("test_test")))
+		printf("ERROR ft_puts(%s): %d %d\n", "test_test", ret, ret2);
+	if ((ret = ft_puts("test2\0n_test")) != (ret2 = puts("test2\0n_test")))
+		printf("ERROR ft_puts(%s): %d %d\n", "test2\0n_test", ret, ret2);
+	if ((ret = ft_puts("")) != (ret2 = puts("")))
+		printf("ERROR ft_puts(%s): %d %d\n", "", ret, ret2);
 }
 
 static void		test_puts_fd(void)
