@@ -3,12 +3,12 @@
 ;–––––––––––––––––––––––––––––––––––––––––––––––––––––––;
 
 %define SYS_READ				3
+%define SYS_WRITE				4
 %define SYSCALL_UNIX(sys_num)	(2 << 24) | sys_num
 %define STDOUT					1
 %define BUFFER_SIZE				1024
 
 	global	_ft_cat
-	extern	_ft_putstr_fd
 	extern	_ft_bzero
 
 	section	.bss
@@ -29,8 +29,8 @@ bzero_buffer:
 	push	rsi
 	push	rdi
 
-	mov		rsi, BUFFER_SIZE + 1
 	lea		rdi, [rel buffer]
+	mov		rsi, BUFFER_SIZE + 1
 	call	_ft_bzero
 
 	pop		rdi
@@ -41,10 +41,10 @@ read_fd:
 	push	rsi
 	push	rdi
 
-	mov		rax, SYSCALL_UNIX(SYS_READ)
 	mov		rdi, r9
-	mov		rdx, BUFFER_SIZE
 	lea		rsi, [rel buffer]
+	mov		rdx, BUFFER_SIZE
+	mov		rax, SYSCALL_UNIX(SYS_READ)
 	syscall
 
 	pop		rdi
@@ -54,7 +54,7 @@ read_fd:
 is_end_of_reading:
 	jc		finish
 	cmp		rax, 0x0
-	je		finish
+	jle		finish
 	jg		output_line
 
 output_line:
@@ -63,7 +63,9 @@ output_line:
 
 	mov		rdi, STDOUT
 	lea		rsi, [rel buffer]
-	call	_ft_putstr_fd
+	mov		rdx, rax
+	mov		rax, SYSCALL_UNIX(SYS_WRITE)
+	syscall
 
 	pop		rdi
 	pop		rsi

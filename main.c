@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:20:24 by fhuang            #+#    #+#             */
-/*   Updated: 2019/02/18 16:04:06 by fhuang           ###   ########.fr       */
+/*   Updated: 2019/02/28 14:36:09 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,25 +268,27 @@ static void		test_strnew(void)
 	free(ret);
 }
 
-static void		test_cat(void)
+static void		test_cat(char **av)
 {
 	const char filename[] = "./main.c";
 	int		fd;
 
-	puts("\033[0;33mft_cat :\033[0;0m");
-	{
-		fd = open(filename, O_RDONLY);
-		ft_cat(fd);
-		close(fd);
-		printf("\nfile: %s | fd = %i\n", filename, fd);
-		fd = -1;
-		ft_cat(fd);
-		printf("\nfd = %i\n",  fd);
-	}
+	puts("\033[0;33mft_cat :\n\033[0;0m");
+	fd = open(filename, O_RDONLY);
+	ft_cat(fd);
+	close(fd);
+	printf("file: %s | fd = %i\n", filename, fd);
+	fd = open(av[0], O_RDONLY);
+	ft_cat(fd);
+	close(fd);
+	printf("file: %s | fd = %i\n", av[0], fd);
+	fd = -1;
+	ft_cat(fd);
+	printf("fd = %i\n",  fd);
 }
 
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	test_strlen();
 	test_bzero();
@@ -307,6 +309,7 @@ int		main(void)
 	test_memcpy();
 	test_strdup();
 	test_strnew();
-	// test_cat();
+	test_cat(av);
+	(void)ac;
 	return (0);
 }
