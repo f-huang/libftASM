@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 18:20:24 by fhuang            #+#    #+#             */
-/*   Updated: 2019/02/28 14:43:15 by fhuang           ###   ########.fr       */
+/*   Updated: 2019/03/08 12:41:56 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ static void		test_strnew(void)
 	write(1, ret, 5);
 	free(ret);
 }
-
+/*
 static void		test_cat(char **av)
 {
 	const char filename[] = "./main.c";
@@ -294,7 +294,7 @@ static void		test_cat(char **av)
 	ft_cat(fd);
 	printf("fd = %i\n",  fd);
 }
-
+*/
 
 int		main(int ac, char **av)
 {
@@ -317,7 +317,8 @@ int		main(int ac, char **av)
 	test_memcpy();
 	test_strdup();
 	test_strnew();
-	test_cat(av);
+//	test_cat(av);
+	(void)av;
 	(void)ac;
 	return (0);
 }

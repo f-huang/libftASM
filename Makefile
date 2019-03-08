@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2019/02/18 16:14:36 by fhuang           ###   ########.fr        #
+#    Updated: 2019/03/08 12:36:17 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ NAME			:=	libfts.a
 # ===== Standard =====
 NASM		:=	nasm
 NASMFLAGS	:=	-f macho64
+CC			:=	clang
+CFLAGS		:=	-Wall -Werror -Wextra
 SRCDIR		:=	src/
 OBJDIR		:=	obj/
 INCDIR		:=	include/
@@ -80,6 +82,9 @@ $(OBJDIR)%.o: $(SRCDIR)%.s $(CACHEF)
 $(CACHEF):
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@test -d $(CACHEF) || touch $(CACHEF)
+
+test:
+	$(CC) $(CFLAGS) main.c $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR) $(CACHEF)
